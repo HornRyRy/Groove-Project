@@ -20,4 +20,5 @@ Note - you can manage gitHub in VS Code on the toolbar under Source Control
 
 under BRANCHES- right click on your branch and select 'Switch to Branch'
 
-under SOURCE CONTROL - enter commit message
+under SOURCE CONTROL - enter commit message, click yes to stage all changes, then sync changes
+
