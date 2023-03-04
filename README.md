@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Project Groove (name pending)**
 
-Things you may want to cover:
+Development notes - 
 
-* Ruby version
+Please code on just your branch
+Push your changes regularly
+Lets merge our branches into main periodically - we can do this together
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+Branches:
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ryry - Ryan's branch
+walker - Walker's branch
+colm - Colm's branch
