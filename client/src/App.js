@@ -1,4 +1,6 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom"
 import "./index.css";
 
 function App(
@@ -12,9 +14,16 @@ function App(
   }, []);
 
   return (
-    <div className="App">
-      <h1>Page Count: {count}</h1>
-    </div>
+    <Routes>
+      <div className="App">
+          <Route path="/testing">
+            <h1>Test Route</h1>
+          </Route>
+          <Route path="/">
+            <h1>Page Count: {count}</h1>
+          </Route>
+      </div>
+    </Routes>
   );
 }
 
