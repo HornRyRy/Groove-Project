@@ -22,3 +22,4 @@ under BRANCHES- right click on your branch and select 'Switch to Branch'
 
 under SOURCE CONTROL - enter commit message, click yes to stage all changes, then sync changes
 
+new_db_ryrydb - name of the PSQL server
