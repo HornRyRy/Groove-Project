@@ -1,10 +1,13 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom"
+
 import Signup from './components/Signup'
 import Testing from './components/Testing'
 import Home from './components/Home'
 import NavBar from "./components/NavBar";
 import './App.css';
+
 
 function App(
 ) {
@@ -20,6 +23,7 @@ function App(
   // }, []);
 
   return (
+
     <div className="App">
       <NavBar />
       <Routes>
@@ -28,6 +32,7 @@ function App(
         <Route path="/signup" element={<Signup  />}  />
       </Routes>
     </div>
+
   );
 }
 

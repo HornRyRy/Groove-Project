@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: groove_project_production
-  username: groove_project
-  password: <%= ENV["GROOVE_PROJECT_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
