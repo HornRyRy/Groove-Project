@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom"
+import Signup from './components/Signup'
+import Testing from './components/Testing'
+import Home from './components/Home'
 
 function App(
 ) {
   const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null)
+  const [page, setPage] = useState("/")
+
 
   useEffect(() => {
     fetch("/hello")
@@ -13,7 +19,12 @@ function App(
 
   return (
     <div className="App">
-      <h1>Page Count: {count}</h1>
+      
+      <Routes>
+        <Route path='/' element={<Home /> }/>
+        <Route path="/testing"element={<Testing />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
     </div>
   );
 }
