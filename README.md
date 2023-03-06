@@ -22,4 +22,20 @@ under BRANCHES- right click on your branch and select 'Switch to Branch'
 
 under SOURCE CONTROL - enter commit message, click yes to stage all changes, then sync changes
 
+
+* ...
+
+Walker's Notes:
+
+GET Requests Format:
+https://api.deezer.com/version/service/id/method/?parameters
+
+Query Quota:
+Limited to 50 requests / 5 seconds
+
+Encoding:
+All requests and responses must be in UTF-8.
+- What??
+
 new_db_ryrydb - name of the PSQL server
+
