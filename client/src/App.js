@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import NavBar from './components/NavBar';
+import Header from './components/Header';
 
 function App(
 ) {
@@ -12,7 +14,12 @@ function App(
 
   return (
     <div className="App">
+      <h1>Groove</h1>
       <h1>Page Count: {count}</h1>
+      <div>
+        <NavBar />
+        <Header />
+      </div>
     </div>
   );
 }
