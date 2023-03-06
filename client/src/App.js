@@ -9,15 +9,15 @@ import './App.css';
 function App(
 ) {
   const [count, setCount] = useState(0);
-  const [user, setUser] = useState(null)
+  //const [user, setUser] = useState(null)
   const [page, setPage] = useState("/")
 
 
-  useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/signup")
+  //     .then((r) => r.json())
+  //     .then((data) => setCount(data.count));
+  // }, []);
 
   return (
     <div className="App">
@@ -25,7 +25,7 @@ function App(
       <Routes>
         <Route path='/' element={<Home /> }/>
         <Route path="/testing"element={<Testing />} />
-        <Route path="/signup" element={<Signup />} user={user} setUser={setUser} />
+        <Route path="/signup" element={<Signup  />}  />
       </Routes>
     </div>
   );
