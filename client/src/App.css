@@ -2,6 +2,28 @@
   text-align: center;
 }
 
+/* Credit where it's due - original styling taken from a W3 CSS tutorial */
+#navBar {
+  overflow: hidden;
+  background-color: #634e4e;
+}
+
+
+#navBar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#navBar a:hover {
+  background-color: #61dafb;
+  color: black;
+  font-weight: bold;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
