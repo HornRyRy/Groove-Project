@@ -1,11 +1,21 @@
 import React from 'react';
 
-function NavBar() {
-  return (
-    <div>
-      <h2>NavBar Component</h2>
-    </div>
-  );
+import { Link } from 'react-router-dom'
+
+function NavBar(props) {
+    return (
+        <nav>
+            <ul id="navBar">
+                <Link to="/">Home</Link>
+                <Link to="/testing">Testing</Link>
+                <Link to="/signup">Signup</Link>
+
+
+            </ul>
+            
+        </nav>
+    );
+
 }
 
 export default NavBar;

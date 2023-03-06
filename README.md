@@ -1,25 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Project Groove (name pending)**
 
-Things you may want to cover:
+Development notes - 
 
-* Ruby version
+Please code on just your branch
+Push your changes regularly
+Lets merge our branches into main periodically - we can do this together
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+Branches:
 
-* Database initialization
+ryry - Ryan's branch
+walker - Walker's branch
+colm - Colm's branch
 
-* How to run the test suite
+Note - you can manage gitHub in VS Code on the toolbar under Source Control
 
-* Services (job queues, cache servers, search engines, etc.)
+under BRANCHES- right click on your branch and select 'Switch to Branch'
 
-* Deployment instructions
+under SOURCE CONTROL - enter commit message, click yes to stage all changes, then sync changes
+
 
 * ...
 
@@ -34,3 +36,6 @@ Limited to 50 requests / 5 seconds
 Encoding:
 All requests and responses must be in UTF-8.
 - What??
+
+new_db_ryrydb - name of the PSQL server
+
