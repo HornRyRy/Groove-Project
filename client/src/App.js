@@ -14,7 +14,7 @@ import './App.css';
 function App(
 ) {
   const [count, setCount] = useState(0);
-  //const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null)
   const [page, setPage] = useState("/")
 
 
@@ -32,7 +32,7 @@ function App(
       <Routes>
         <Route path='/' element={<Home /> }/>
         <Route path="/testing"element={<Testing />} />
-        <Route path="/signup" element={<Signup  />}  />
+        <Route path="/signup" element={<Signup user={user} setUser={setUser} />}  />
       </Routes>
 
     </div>
