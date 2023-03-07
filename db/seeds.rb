@@ -1,4 +1,5 @@
-require "open-uri"
+require 'open-uri'
+require 'json'
 
 puts "☠️ Deleting old data..."
 Search.destroy_all

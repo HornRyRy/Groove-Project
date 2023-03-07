@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import SearchSongCard from './SearchSongCard';
 
 function Search() {
 
   const [search, setSearch] = useState("");
-  // const [searchResults, setResults] = useState([]);
+  const [songsList, setSongsList] = useState([]);
 
   useEffect(() => {
-    // fetch(`https://api.deezer.com/search/track/?q=${search}&index=0&limit=2`)
-    fetch(`https://api.deezer.com/search?q=eminem&index=0&limit=2`)
+    fetch(`http://localhost:3000/searches`)
+    // fetch(`https://api.deezer.com/search?q=eminem&index=0&limit=4`)
     .then(res => res.json())
-    .then(data => console.log(data))
-  }, [search])
+    .then(data => setSongsList(data))
+    // .then(data => console.log(data))
+  }, [])
+
+  const searchSongsList = songsList.map(song => {
+    return (
+      <SearchSongCard key={song.id} song={song} />
+    )
+  })
 
   const handleChange = (e) => {
     setSearch(e.target.value)
@@ -50,14 +58,10 @@ function Search() {
             <th>Album</th>
             <th>Album Image</th>
             <th>Duration</th>
-            <th>Release Date</th>
-            <th>BPM</th>
             <th>Preview</th>
             <th>Add to Playlist</th>
           </tr>
-          <tr>
-            {/* {searchResults} */}
-          </tr>
+          {searchSongsList}
         </tbody>
       </table>
     </div>

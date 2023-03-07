@@ -8,6 +8,7 @@ function NavBar(props) {
                 <Link to="/">Home</Link>
                 <Link to="/testing">Testing</Link>
                 <Link to="/signup">Signup</Link>
+                <Link to="/search">Search</Link>
             </ul>            
         </nav>
     );

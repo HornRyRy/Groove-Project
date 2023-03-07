@@ -25,7 +25,7 @@ under SOURCE CONTROL - enter commit message, click yes to stage all changes, the
 
 * ...
 
-Walker's Notes:
+# Walker's Notes:
 
 GET Requests Format:
 https://api.deezer.com/version/service/id/method/?parameters
@@ -35,7 +35,8 @@ Limited to 50 requests / 5 seconds
 
 Encoding:
 All requests and responses must be in UTF-8.
-- What??
+
+Need to run "sudo service postgresql start" in terminal to access database?
 
 new_db_ryrydb - name of the PSQL server
 
