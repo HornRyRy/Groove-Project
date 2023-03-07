@@ -1,8 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
 import { Routes, Route } from "react-router-dom"
-
 import Signup from './components/Signup'
 import Login from "./components/Login";
 import Testing from './components/Testing'

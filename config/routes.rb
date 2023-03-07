@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  resources :searches, except: [:update]
   resources :users, only: [:show, :create, :index, :destroy]
   resources :sessions, only: [:index]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
