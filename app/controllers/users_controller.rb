@@ -10,6 +10,20 @@ class UsersController < ApplicationController
         render json: user, status: :created
     end
 
+    ##after development, do we comment out the destroy and index actions?
+
+    def destroy
+        user = User.find(params[:id])
+        user.destroy
+        head :no_content
+    end
+
+    def index
+        users = User.all
+        render json: users, status: :ok 
+    end
+
+
     private
 
     def user_params
