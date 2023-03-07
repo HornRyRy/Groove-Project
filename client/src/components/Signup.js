@@ -2,17 +2,35 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
-function Signup({ }) {
+function Signup({ user, setUser }) {
 
 const [name, setName] = useState('')
-const [user, setUser] = useState('')
+const [username, setUsername] = useState('')
 const [password, setPassword] = useState('')
 
 
     function handleSubmit(e){
         e.preventDefault()
-        //more code to handle form submission
+        const user ={
+            name, 
+            username,
+            password
+        }
+        fetch('/users', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body:JSON.stringify(user)
+        })
+        .then(resp => {
+            if(resp.status === 201){
+                resp.json().then(user => setUser(user))
+            }else{
+                resp.json().then(console.log)
+            }
+        })
     }
+
+
 
     return (
         <div>
@@ -24,10 +42,10 @@ const [password, setPassword] = useState('')
                 <input placeholder="App will call you by this" type='text' name='name' value={name} onChange={e => setName(e.target.value)} />
                 <div></div>
                 <label>Username </label>
-                <input placeholder="Username (email)" type='text' name='username' value={user} onChange={e => setUser(e.target.value)} />
+                <input placeholder="Username (email)" type='text' name='username' value={username} onChange={e => setUsername(e.target.value)} />
                 <div></div>
                 <label>Password </label>
-                <input placeholder="Password" type='text' name='password' value={password} onChange={e => setPassword(e.target.value)} />
+                <input placeholder="Password" type='password' name='password' value={password} onChange={e => setPassword(e.target.value)} />
                 <div></div>
                 <input type='submit' value='Register' />
             </form>
