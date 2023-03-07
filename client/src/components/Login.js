@@ -23,7 +23,7 @@ function Login(user, setUser) {
     fetch("/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(user),
+      body:JSON.stringify(user),
     }).then((resp) => {
       if (resp.ok) {
         resp.json().then((user) => {
@@ -37,8 +37,8 @@ function Login(user, setUser) {
   }
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...FormData, [name]: value });
+    const { username, value } = e.target;
+    setFormData({ ...FormData, [username]: value });
   };
 
   return (
