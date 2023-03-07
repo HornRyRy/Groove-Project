@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom"
 
 import Signup from './components/Signup'
+import Login from "./components/Login";
 import Testing from './components/Testing'
 import Home from './components/Home'
 import NavBar from "./components/NavBar";
+import Search from "./components/Search";
 import './App.css';
 
 
@@ -24,23 +26,25 @@ function App(
   //     .then((data) => setCount(data.count));
   // }, []);
 
-  function navBarRenderNoUser(){
-    // TODO -conditional rendering of navbar dependent on a user logged in
-    return (
+  // function navBarRenderNoUser(){
+  //   // TODO -conditional rendering of navbar dependent on a user logged in
+  //   return (
 
-      <div className="App">
+  //     <div className="App">
   
-        <NavBar />
-        <Routes>
-          <Route path='/' element={<Home /> }/>
-          <Route path="/testing"element={<Testing />} />
-          <Route path="/signup" element={<Signup user={user} setUser={setUser} />}  />
-        </Routes>
+  //       <NavBar />
+  //       <Routes>
+  //         <Route path='/' element={<Home /> }/>
+  //         <Route path="/testing"element={<Testing />} />
+  //         <Route path="/signup" element={<Signup user={user} setUser={setUser} />}  />
+  //         <Route path="/login" element={<Login />} user={user} setUser={setUser} />
+  //         <Route path="/search" element={<Search />}/>
+  //       </Routes>
   
-      </div>
+  //     </div>
   
-    );
-  }
+  //   );
+  // }
 
   function navBarRenderYesUser(){
 
@@ -56,6 +60,8 @@ function App(
         <Route path='/' element={<Home /> }/>
         <Route path="/testing"element={<Testing />} />
         <Route path="/signup" element={<Signup user={user} setUser={setUser} />}  />
+        <Route path="/login" element={<Login />} user={user} setUser={setUser} />
+        <Route path="/search" element={<Search />}/>
       </Routes>
 
     </div>

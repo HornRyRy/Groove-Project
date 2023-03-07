@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 function Signup({ user, setUser }) {
 
 const [name, setName] = useState('')
-
 const [username, setUsername] = useState('')
 const [password, setPassword] = useState('')
 
@@ -30,6 +29,8 @@ const [password, setPassword] = useState('')
             }
         })
     }
+
+
 
     return (
         <div>
