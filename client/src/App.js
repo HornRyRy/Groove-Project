@@ -24,6 +24,29 @@ function App(
   //     .then((data) => setCount(data.count));
   // }, []);
 
+  function navBarRenderNoUser(){
+    // TODO -conditional rendering of navbar dependent on a user logged in
+    return (
+
+      <div className="App">
+  
+        <NavBar />
+        <Routes>
+          <Route path='/' element={<Home /> }/>
+          <Route path="/testing"element={<Testing />} />
+          <Route path="/signup" element={<Signup user={user} setUser={setUser} />}  />
+        </Routes>
+  
+      </div>
+  
+    );
+  }
+
+  function navBarRenderYesUser(){
+
+  }
+
+
   return (
 
     <div className="App">
