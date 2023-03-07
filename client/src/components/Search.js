@@ -6,8 +6,8 @@ function Search() {
   // const [searchResults, setResults] = useState([]);
 
   useEffect(() => {
-    fetch(`https://api.deezer.com/search/track/?q=${search}&index=0&limit=2`)
-    // fetch(`https://api.deezer.com/search/track/?q=starboy&index=0&limit=2`)
+    // fetch(`https://api.deezer.com/search/track/?q=${search}&index=0&limit=2`)
+    fetch(`https://api.deezer.com/search?q=eminem&index=0&limit=2`)
     .then(res => res.json())
     .then(data => console.log(data))
   }, [search])

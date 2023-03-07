@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom'
 
 function NavBar(props) {
@@ -9,13 +8,9 @@ function NavBar(props) {
                 <Link to="/">Home</Link>
                 <Link to="/testing">Testing</Link>
                 <Link to="/signup">Signup</Link>
-
-
-            </ul>
-            
+            </ul>            
         </nav>
     );
-
 }
 
 export default NavBar;
