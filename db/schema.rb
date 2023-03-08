@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_06_235330) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_07_012701) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,7 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_235330) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "songs", force: :cascade do |t|
+  # create_table "songs", force: :cascade do |t|
+  create_table "searches", force: :cascade do |t|
     t.string "name"
     t.string "artist"
     t.string "album"
@@ -43,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_235330) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.string "username"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
