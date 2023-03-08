@@ -1,56 +1,142 @@
 import React, { useState, useEffect } from 'react';
 import SearchSongCard from './SearchSongCard';
 
-function Search() {
+function Search() { // pass down playlists, work w/ Colm
 
-  const [search, setSearch] = useState("");
+  const initialForm = {
+    name: "",
+    artist: "",
+    album: "",
+    picture: "",
+    duration: "",
+    preview: ""
+  }
+
+  // const [search, setSearch] = useState(""); // STRETCH GOAL
   const [songsList, setSongsList] = useState([]);
+  const [form, setForm] = useState(initialForm);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:3000/searches`)
-    // fetch(`https://api.deezer.com/search?q=eminem&index=0&limit=4`)
     .then(res => res.json())
     .then(data => setSongsList(data))
-    // .then(data => console.log(data))
   }, [])
 
-  const searchSongsList = songsList.map(song => {
+  const sortSongsList = songsList.sort((a, b) => a.artist.localeCompare(b.artist))
+
+  const searchSongsList = sortSongsList.map(song => {
     return (
       <SearchSongCard key={song.id} song={song} />
     )
   })
 
-  const handleChange = (e) => {
-    setSearch(e.target.value)
+  const handleAddChange = (e) => {
+    setForm({...form, [e.target.name]: e.target.value})
   }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-
-    setSearch("")
+  
+  const handleAddSubmit = (e) => {
+    e.preventDefault();
+    
+    const config = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form)
+    }
+    
+    // fetch(`http://localhost:3000/searches`, config) // ORIGINAL
+    // .then(res => res.json())
+    // .then(data => setSongsList([...songsList, data]))
+    fetch(`http://localhost:3000/searches`, config)
+    .then(res => {
+      if(res.ok) {
+        res.json()
+        .then(data => {
+          setSongsList([...songsList, data])
+          setErrors([])
+        })
+      } else {
+        res.json().then(json => setErrors(json["errors"]))
+      }
+    })
+    
+    setForm(initialForm);
   }
-
+  
+  // const handleSearchSubmit = (e) => { // STRETCH GOAL
+  //   e.preventDefault()
+  //   setSearch("")
+  // }
+  
+  // const handleSearchChange = (e) => { // STRETCH GOAL
+  //   setSearch(e.target.value)
+  // }
+  
   return (
     <div>
-      <h2>Search Component</h2>
-      <h3>Search Field:</h3>
-      <form onSubmit={handleSubmit}>
+      <h2>Songs List</h2>
+
+      {/* <h3>Search More Songs:</h3> ** STRETCH GOAL **
+      <form onSubmit={handleSearchSubmit}>
         <input
-          onChange={handleChange}
+          onChange={handleSearchChange}
           type="text"
           name="search"
           placeholder="Search"
           value={search}
         />
         <button>Search</button>
+      </form> */}
+
+      {(errors ? errors.map(error => <h3 style={{color:'red'}}>{error.toUpperCase()}</h3>) : "")}
+      <h3>Add a Song:</h3>
+      <form onSubmit={handleAddSubmit}>
+      <input
+          onChange={handleAddChange}
+          type="text"
+          name="name"
+          placeholder="Enter Song Name"
+          value={form.name}
+        />
+        <input
+          onChange={handleAddChange}
+          type="text"
+          name="artist"
+          placeholder="Enter Artist Name"
+          value={form.artist}
+        />
+        <input
+          onChange={handleAddChange}
+          type="text"
+          name="album"
+          placeholder="Enter Album Name"
+          value={form.album}
+        />
+        <input
+          onChange={handleAddChange}
+          type="text"
+          name="picture"
+          placeholder="Enter Album Image Source"
+          value={form.picture}
+        />
+        <input
+          onChange={handleAddChange}
+          type="text"
+          name="duration"
+          placeholder="Enter Song Duration"
+          value={form.duration}
+        />
+        <input
+          onChange={handleAddChange}
+          type="text"
+          name="preview"
+          placeholder="Enter Song Preview Source"
+          value={form.preview}
+        />
+        <button type="submit">Add Song</button>
       </form>
+
       <table>
-        <thead>
-          <tr>
-            <th>Search Results</th>
-          </tr>
-        </thead>
         <tbody>
           <tr>
             <th>Song Name</th>
