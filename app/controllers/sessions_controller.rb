@@ -12,7 +12,14 @@ class SessionsController < ApplicationController
         end
     end
 
-    ##delete after development?
+    def destroy
+        session.delete :user_id
+        byebug
+        head :no_content
+        console.log("destroy session")
+    end
+
+    
 
     def index
         

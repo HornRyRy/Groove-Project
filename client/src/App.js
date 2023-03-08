@@ -59,6 +59,7 @@ function App(
         <Route path="/testing"element={<Testing />} />
         <Route path="/signup" element={<Signup user={user} setUser={setUser} />}  />
         <Route path="/login" element={<Login />} user={user} setUser={setUser} />
+        
         <Route path="/search" element={<Search />}/>
       </Routes>
 
