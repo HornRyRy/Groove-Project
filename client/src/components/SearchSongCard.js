@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SearchSongCard({ song }) { // pass down playlists
+function SearchSongCard({ song }) { // pass down playlists, work w/ Colm
 
   const [playlist, setPlaylist] = useState(1)
 
@@ -31,7 +31,7 @@ function SearchSongCard({ song }) { // pass down playlists
       })
     }
 
-    fetch(`server/playlists/${playlist.id}`, config) // URL and playlist.id is not correct
+    fetch(`server/playlists/${playlist.id}`, config) // POST song to playlist, URL and playlist.id is not correct
     .then(res => res.json())
     .then(data => console.log(data))
   }
@@ -42,13 +42,16 @@ function SearchSongCard({ song }) { // pass down playlists
   //   )
   // })
 
+  const durationMin = Math.floor(song.duration / 60);
+  const durationSec = (song.duration % 60 > 10 ? song.duration % 60 : "0" + song.duration % 60 );
+
   return (
     <tr>
       <td>{song.name}</td>
       <td>{song.artist}</td>
       <td>{song.album}</td>
       <td><img src={song.picture} alt={song.album}/></td>
-      <td>{song.duration}</td>
+      <td>{durationMin}:{durationSec}</td>
       <td>
         <audio
           controls
