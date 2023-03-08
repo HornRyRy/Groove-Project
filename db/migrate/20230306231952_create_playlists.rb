@@ -4,7 +4,8 @@ class CreatePlaylists < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :description
       t.string :playlist_img
-      t.references :user, null: false, foreign_key: true
+      t.integer :user_id 
+      # t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
