@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login(user, setUser) {
+function Login({user, setUser}) {
   const [formData, setFormData] = useState({
     // name:'',
     username: "",
@@ -37,8 +37,8 @@ function Login(user, setUser) {
   }
 
   const handleChange = (e) => {
-    const { username, value } = e.target;
-    setFormData({ ...FormData, [username]: value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   return (
