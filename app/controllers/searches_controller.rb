@@ -11,7 +11,7 @@ class SearchesController < ApplicationController
   end
 
   def create
-    song = Search.create(search_params)
+    song = Search.create!(search_params)
     render json: song, status: :ok
   end
 

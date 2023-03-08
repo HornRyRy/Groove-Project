@@ -14,7 +14,8 @@ function Search() { // pass down playlists, work w/ Colm
 
   // const [search, setSearch] = useState(""); // STRETCH GOAL
   const [songsList, setSongsList] = useState([]);
-  const [form, setForm] = useState(initialForm)
+  const [form, setForm] = useState(initialForm);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:3000/searches`)
@@ -43,10 +44,20 @@ function Search() { // pass down playlists, work w/ Colm
       body: JSON.stringify(form)
     }
     
+    // fetch(`http://localhost:3000/searches`, config) // ORIGINAL
+    // .then(res => res.json())
+    // .then(data => setSongsList([...songsList, data]))
     fetch(`http://localhost:3000/searches`, config)
-    .then(res => res.json())
-    .then(data => {
-      setSongsList([...songsList, data])
+    .then(res => {
+      if(res.ok) {
+        res.json()
+        .then(data => {
+          setSongsList([...songsList, data])
+          setErrors([])
+        })
+      } else {
+        res.json().then(json => setErrors(json["errors"]))
+      }
     })
     
     setForm(initialForm);
@@ -77,6 +88,7 @@ function Search() { // pass down playlists, work w/ Colm
         <button>Search</button>
       </form> */}
 
+      {(errors ? errors.map(error => <h3 style={{color:'red'}}>{error.toUpperCase()}</h3>) : "")}
       <h3>Add a Song:</h3>
       <form onSubmit={handleAddSubmit}>
       <input
