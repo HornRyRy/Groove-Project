@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
-function NavBar(props) {
+function NavBar({errors, setErrors, user, setUser}) {
 
     let navigate = useNavigate()
 
@@ -16,6 +16,22 @@ function NavBar(props) {
             }
         })
     }
+
+
+    // if no user -> Link to '/<Search>
+
+    // if(errors) return <h1>errors</h1>
+    // if(!user) return (
+    //     <nav>
+    //     <ul id="navBar">
+
+    //         <Link to="/signup">Signup</Link>
+    //         <Link to="/login">Login</Link>
+
+    //     </ul>
+        
+    // </nav>
+    // ) 
 
     return (
         <nav>
