@@ -1,27 +1,27 @@
 class SongsController < ApplicationController
 
-  before_action :set_search, only: [:show, :destroy]
+  before_action :set_song, only: :show
 
   def index
     render json: Song.all.alphabetize, status: :ok
   end
 
   def show
-    render json: @search, status: :ok
+    render json: @song, status: :ok
   end
 
   def create
-    song = Song.create!(search_params)
-    render json: song, status: :ok
+    song = Song.create!(song_params)
+    render json: song, status: :created
   end
 
   private
 
-  def set_search
-    @search = Song.find(params[:id])
+  def set_song
+    @song = Song.find(params[:id])
   end
 
-  def search_params
+  def song_params
     params.permit(:name, :artist, :album, :picture, :duration, :preview)
   end
   

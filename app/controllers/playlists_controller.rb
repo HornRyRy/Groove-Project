@@ -17,7 +17,7 @@ class PlaylistsController < ApplicationController
       
     def update
         @playlist.update(playlist_params)
-        render json: @playlist, status: :ok
+        render json: @playlist, status: :accepted
     end
       
     def destroy
