@@ -19,8 +19,14 @@ function Songs() { // pass down playlists, work w/ Colm
 
   useEffect(() => {
     fetch(`/songs`)
-    .then(res => res.json())
-    .then(data => setSongsList(data))
+    .then(res => {
+      if(res.ok) {
+        res.json()
+        .then(data => setSongsList(data))
+      } else {
+        res.json().then(json => setErrors(json["errors"]))
+      }
+    })
   }, [])
 
   const sortSongsList = songsList.sort((a, b) => a.artist.localeCompare(b.artist))

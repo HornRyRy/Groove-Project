@@ -31,7 +31,7 @@ function SongCard({ song }) { // pass down playlists, work w/ Colm
       })
     }
 
-    fetch(`server/playlists/${playlist.id}`, config) // POST song to playlist, URL and playlist.id is not correct
+    fetch(`users/user.id/playlists/${playlist.id}`, config) // POST song to playlist, URL and playlist.id is not correct
     .then(res => res.json())
     .then(data => console.log(data))
   }
