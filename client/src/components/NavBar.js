@@ -41,6 +41,7 @@ function NavBar({errors, setErrors, user, setUser}) {
                 <Link to="/testing">Testing</Link>
                 <Link to="/signup">Signup</Link>
                 <Link to="/login">Login</Link>
+                <Link to="/playlists">My Playlists</Link>
                 <Link to="/songs">Songs List</Link>
                 <button onClick={handleLogout}>Logout</button>
             </ul>

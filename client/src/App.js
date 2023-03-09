@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Testing from './components/Testing'
 import Home from './components/Home'
 import NavBar from "./components/NavBar";
+import Playlists from "./components/Playlists";
 import Songs from "./components/Songs";
 import './App.css';
 
@@ -60,7 +61,7 @@ function App(
         <Route path="/testing"element={<Testing />} />
         <Route path="/signup" element={<Signup user={user} setUser={setUser} />}  />
         <Route path="/login" element={<Login user={user} setUser={setUser}/>}  />
-        
+        <Route path="/playlists" element={<Playlists />}/>
         <Route path="/songs" element={<Songs />}/>
       </Routes>
 
