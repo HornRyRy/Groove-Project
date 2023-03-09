@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
         
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
-            byebug
+            
             render json:user, status: :ok
         else
             render json: {error: "Invalid Username and/or Password!"}, status: :unauthorized
@@ -16,9 +16,8 @@ class SessionsController < ApplicationController
 
     def destroy
         session.delete :user_id
-        byebug
+        #byebug
         head :no_content
-        console.log("destroy session")
     end
 
     

@@ -28,7 +28,7 @@ function Login({user, setUser}) {
       if (resp.ok) {
         resp.json().then((user) => {
           setUser(user);
-          navigate(`/users/${user.id}`);
+          navigate(`/`);
         });
       } else {
         resp.json().then((json) => setErrors(json.errors));

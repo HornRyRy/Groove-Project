@@ -31,30 +31,30 @@ function App(
 
   }
 
-  // <Route useRoutes=(["/signup", "/testing", "/search"]) element={<Signup user={user} setUser={setUser} />}  />
+  //<Route useRoutes=(["/signup", "/testing", "/search"]) element={<Signup user={user} setUser={setUser} />}  />
 
-  // if(errors) return <h1>errors</h1>
-  // if(!user) return (
-  //   <div className="App">
+  if(errors) return <h1>errors</h1>
+  if(!user) return (
+    <div className="App">
 
-  //     <NavBar errors={errors} setErrors={setErrors} />
-  //     <Routes>
-  //       <Route path='/' element={<Home /> }/>
+      <NavBar errors={errors} setErrors={setErrors} user={user} setUser={setUser} />
+      <Routes>
+        <Route path='/' element={<Home /> }/>
      
-  //       <Route path="/signup" element={<Signup user={user} setUser={setUser} />}  />
-  //       <Route path="/login" element={<Login user={user} setUser={setUser}/>}  />
-  //       <Route path="/search" element={<Testing />}/>
-  //     </Routes>
+        <Route path="/signup" element={<Signup user={user} setUser={setUser} />}  />
+        <Route path="/login" element={<Login user={user} setUser={setUser}/>}  />
+       
+      </Routes>
 
-  //   </div>
-  // ) 
+    </div>
+  ) 
 
 
   return (
 
     <div className="App">
 
-      <NavBar errors={errors} setErrors={setErrors} />
+      <NavBar errors={errors} setErrors={setErrors} user={user} setUser={setUser} />
       <Routes>
         <Route path='/' element={<Home /> }/>
         <Route path="/testing"element={<Testing />} />

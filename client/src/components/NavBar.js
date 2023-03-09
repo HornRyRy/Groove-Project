@@ -13,6 +13,7 @@ function NavBar({errors, setErrors, user, setUser}) {
         .then(resp => {
             if(resp.ok){
                 navigate("/login")
+                setUser(null)
             }
         })
     }
@@ -20,18 +21,18 @@ function NavBar({errors, setErrors, user, setUser}) {
 
     // if no user -> Link to '/<Search>
 
-    // if(errors) return <h1>errors</h1>
-    // if(!user) return (
-    //     <nav>
-    //     <ul id="navBar">
+    if(errors) return <h1>errors</h1>
+    if(!user) return (
+        <nav>
+        <ul id="navBar">
 
-    //         <Link to="/signup">Signup</Link>
-    //         <Link to="/login">Login</Link>
+            <Link to="/signup">Signup</Link>
+            <Link to="/login">Login</Link>
 
-    //     </ul>
+        </ul>
         
-    // </nav>
-    // ) 
+    </nav>
+    ) 
 
     return (
         <nav>
