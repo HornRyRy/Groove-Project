@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import SearchSongCard from './SearchSongCard';
+import SongCard from './SongCard';
 
-function Search() { // pass down playlists, work w/ Colm
+function Songs() { // pass down playlists, work w/ Colm
 
   const initialForm = {
     name: "",
@@ -18,16 +18,16 @@ function Search() { // pass down playlists, work w/ Colm
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/searches`)
+    fetch(`/songs`)
     .then(res => res.json())
     .then(data => setSongsList(data))
   }, [])
 
   const sortSongsList = songsList.sort((a, b) => a.artist.localeCompare(b.artist))
 
-  const searchSongsList = sortSongsList.map(song => {
+  const renderSongsList = sortSongsList.map(song => {
     return (
-      <SearchSongCard key={song.id} song={song} />
+      <SongCard key={song.id} song={song} />
     )
   })
 
@@ -44,10 +44,7 @@ function Search() { // pass down playlists, work w/ Colm
       body: JSON.stringify(form)
     }
     
-    // fetch(`http://localhost:3000/searches`, config) // ORIGINAL
-    // .then(res => res.json())
-    // .then(data => setSongsList([...songsList, data]))
-    fetch(`http://localhost:3000/searches`, config)
+    fetch(`/songs`, config)
     .then(res => {
       if(res.ok) {
         res.json()
@@ -147,11 +144,11 @@ function Search() { // pass down playlists, work w/ Colm
             <th>Preview</th>
             <th>Add to Playlist</th>
           </tr>
-          {searchSongsList}
+          {renderSongsList}
         </tbody>
       </table>
     </div>
   );
 }
 
-export default Search;
+export default Songs;

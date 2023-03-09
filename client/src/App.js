@@ -6,7 +6,7 @@ import Login from "./components/Login";
 import Testing from './components/Testing'
 import Home from './components/Home'
 import NavBar from "./components/NavBar";
-import Search from "./components/Search";
+import Songs from "./components/Songs";
 import './App.css';
 
 function App(
@@ -31,7 +31,7 @@ function App(
 
   }
 
-  //<Route useRoutes=(["/signup", "/testing", "/search"]) element={<Signup user={user} setUser={setUser} />}  />
+  //<Route useRoutes=(["/signup", "/testing", "/song"]) element={<Signup user={user} setUser={setUser} />}  />
 
   if(errors) return <h1>errors</h1>
   if(!user) return (
@@ -61,7 +61,7 @@ function App(
         <Route path="/signup" element={<Signup user={user} setUser={setUser} />}  />
         <Route path="/login" element={<Login user={user} setUser={setUser}/>}  />
         
-        <Route path="/search" element={<Search />}/>
+        <Route path="/songs" element={<Songs />}/>
       </Routes>
 
     </div>
