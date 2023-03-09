@@ -71,7 +71,7 @@ fetch_songs("zedd")
 puts "seeding playlists"
 playlist1 = user1.playlists.create(name: "Workout", description: "Playlist for working out", playlist_img: "workout.jpg", user_id: user1.id)
 playlist2 = user1.playlists.create(name: "Chill", description: "Playlist for relaxing", playlist_img: "chill.jpg", user_id: user2.id)
-playlist3 = user2.playlists.create(name: "Party", description: "Playlist for partying", playlist_img: "party.jpg",user_id: user1.id)
+playlist3 = user2.playlists.create(name: "Party", description: "Playlist for partying", playlist_img: "party.jpg", user_id: user1.id)
 
 puts "seeding join_tables"
 JoinTable.create(playlist_id: playlist1.id, song_id: Song.ids.sample)

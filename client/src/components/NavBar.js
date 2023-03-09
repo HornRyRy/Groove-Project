@@ -19,7 +19,7 @@ function NavBar({errors, setErrors, user, setUser}) {
     }
 
 
-    // if no user -> Link to '/<Search>
+    // if no user -> Link to '/<Song>
 
     if(errors) return <h1>errors</h1>
     if(!user) return (
@@ -41,7 +41,8 @@ function NavBar({errors, setErrors, user, setUser}) {
                 <Link to="/testing">Testing</Link>
                 <Link to="/signup">Signup</Link>
                 <Link to="/login">Login</Link>
-                <Link to="/search">Search</Link>
+                <Link to="/playlists">My Playlists</Link>
+                <Link to="/songs">Songs List</Link>
                 <button onClick={handleLogout}>Logout</button>
             </ul>
             

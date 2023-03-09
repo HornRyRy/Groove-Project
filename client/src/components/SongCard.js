@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SearchSongCard({ song }) { // pass down playlists, work w/ Colm
+function SongCard({ song }) { // pass down playlists, work w/ Colm
 
   const [playlist, setPlaylist] = useState(1)
 
@@ -75,4 +75,4 @@ function SearchSongCard({ song }) { // pass down playlists, work w/ Colm
   )
 }
 
-export default SearchSongCard;
+export default SongCard;
