@@ -28,9 +28,7 @@ function App(
 
   },[])
 
-  function navBarRenderYesUser(){
 
-  }
 
   //<Route useRoutes=(["/signup", "/testing", "/song"]) element={<Signup user={user} setUser={setUser} />}  />
 
@@ -61,7 +59,7 @@ function App(
         <Route path="/testing"element={<Testing />} />
         <Route path="/signup" element={<Signup user={user} setUser={setUser} />}  />
         <Route path="/login" element={<Login user={user} setUser={setUser}/>}  />
-        <Route path="/playlists" element={<Playlists />}/>
+        <Route path="/playlists" element={<Playlists user={user} />}/>
         <Route path="/songs" element={<Songs />}/>
       </Routes>
 

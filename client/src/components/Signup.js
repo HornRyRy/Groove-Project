@@ -24,8 +24,9 @@ const [password, setPassword] = useState('')
         .then(resp => {
             if(resp.status === 201){
                 resp.json().then(user => setUser(user))
+                console.log("Users post status 201")
             }else{
-                resp.json().then(console.log)
+                resp.json().then(console.log("no 201 status"))
             }
         })
     }

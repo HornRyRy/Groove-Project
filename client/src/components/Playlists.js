@@ -1,24 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import PlaylistCard from './PlaylistCard';
 
-function Playlists() {
+function Playlists({ user }) {
 
   const initialForm = {
     name: "",
     description: "",
     playlist_img: "",
+    user_id: user.id
   }
 
-  const [myPlaylists, setMyPlaylists] = useState([]);
+  const [myPlaylists, setMyPlaylists] = useState([]); // Need to lift state to App
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState([]);
   
   // GET
   useEffect(() => {
-    fetch(`/playlists`)
-    .then(res => res.json())
-    .then(data => setMyPlaylists(data))
-  }, [])
+    fetch(`/users/${user.id}/playlists`)
+    // fetch(`/playlists`)
+    .then(res => {
+      if(res.ok) {
+        res.json()
+        .then(data => setMyPlaylists(data))
+      } else {
+        res.json().then(json => setErrors(json["errors"]))
+      }
+    })
+  }, [user.id])
 
     const handleAddChange = (e) => {
     setForm({...form, [e.target.name]: e.target.value})
@@ -34,7 +42,8 @@ function Playlists() {
       body: JSON.stringify(form)
     }
     
-    fetch(`/playlists`, config)
+    // fetch(`http://localhost:3000/users/${user.id}/playlists`, config)
+    fetch(`/users/${user.id}/playlists`, config)
     .then(res => {
       if(res.ok) {
         res.json()

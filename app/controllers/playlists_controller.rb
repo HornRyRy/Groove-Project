@@ -2,7 +2,14 @@ class PlaylistsController < ApplicationController
     before_action :set_playlist, only: [:show, :update, :destroy]
       
     def index
-        playlists = Playlist.all
+        # playlists = Playlist.all
+        # render json: playlists, status: :ok
+        if params[:user_id]
+            user_id = User.find(params[:user_id])
+            playlists = user_id.playlists
+        else
+            playlists = Playlist.all
+        end
         render json: playlists, status: :ok
     end
       
