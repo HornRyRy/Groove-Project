@@ -14,6 +14,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_012701) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "join_tables", force: :cascade do |t|
+    t.integer "playlist_id"
+    t.integer "song_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "playlists", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "playlist_img"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  # create_table "songs", force: :cascade do |t|
   create_table "searches", force: :cascade do |t|
     t.string "name"
     t.string "artist"
