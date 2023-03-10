@@ -15,6 +15,12 @@
   border-radius: 5px;
 }
 
+table{
+  border-color: #3d405b;
+  border-width: 1px;
+  border-radius: 5px;
+}
+
 
 #navBar a {
   float: left;
