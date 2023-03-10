@@ -13,7 +13,6 @@ function SongCard({ song, myPlaylists }) {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
-        id: song.id,
         name: song.name,
         artist: song.artist,
         album: song.album,
@@ -23,16 +22,13 @@ function SongCard({ song, myPlaylists }) {
       })
     }
 
-    const playlistId = myPlaylists.filter( pl => pl.name == playlist ) // Answer: playlistId[0]["id"]
+    const playlistId = myPlaylists.filter( pl => pl.name === playlist ) // Answer: playlistId[0]["id"]
         
-    fetch(`/playlists/${playlistId[0]["id"]}/songs`, config) // POST song to playlist, revisit URL
-    // fetch(`/playlists`, config) // POST song to playlist, revisit URL
+    fetch(`/playlists/${playlistId[0]["id"]}/songs`, config)
     .then(res => res.json())
     .then(data => {
-      // console.log(playlist)
-      // console.log(playlistId)
-      console.log(playlistId[0]["id"])
-      console.log(data)
+      console.log(data) // Need to add frontend rendering
+      
     })
   }
 

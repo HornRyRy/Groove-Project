@@ -47,7 +47,7 @@ function Songs({ user, myPlaylists, setMyPlaylists }) {
 
   const renderSongsList = sortSongsList.map(song => {
     return (
-      <SongCard key={song.id} song={song} myPlaylists={myPlaylists} />
+      <SongCard key={song.id} song={song} myPlaylists={myPlaylists} setMyPlaylists={setMyPlaylists} />
     )
   })
 
