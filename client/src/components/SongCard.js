@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
 
-function SongCard({ song }) { // pass down playlists, work w/ Colm
+function SongCard({ song, myPlaylists }) {
 
   const [playlist, setPlaylist] = useState(1)
 
   const handleChange = (e) => {
-    // const playlistId = playlists.findIndex(p => {
-    //   p.name = e.target.value
-    // })
-    // OR .find array method? .some?
-    // const playlistId = playlists.find(p => {
-    //   p.name = e.target.value
-    //   return p.id
-    // })
     setPlaylist(e.target.value)
-    // setPlaylist(playlistId)
   }
 
   const handleClick = (e) => {
@@ -22,6 +13,7 @@ function SongCard({ song }) { // pass down playlists, work w/ Colm
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
+        id: song.id,
         name: song.name,
         artist: song.artist,
         album: song.album,
@@ -31,22 +23,31 @@ function SongCard({ song }) { // pass down playlists, work w/ Colm
       })
     }
 
-    fetch(`users/user.id/playlists/${playlist.id}`, config) // POST song to playlist, URL and playlist.id is not correct
+    const playlistId = myPlaylists.filter( pl => pl.name == playlist ) // Answer: playlistId[0]["id"]
+        
+    fetch(`/playlists/${playlistId[0]["id"]}/songs`, config) // POST song to playlist, revisit URL
+    // fetch(`/playlists`, config) // POST song to playlist, revisit URL
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+      // console.log(playlist)
+      // console.log(playlistId)
+      console.log(playlistId[0]["id"])
+      console.log(data)
+    })
   }
 
-  // const playlistOptions = playlists.map(playlist => { // work w/ Colm
-  //   return (
-  //     <option key={playlist.id} value={playlist.name}>{playlist.name}</option>
-  //   )
-  // })
+  const playlistOptions = myPlaylists.map(playlist => {
+    return (
+      <option key={playlist.id} value={playlist.name}>{playlist.name}</option>
+    )
+  })
 
   const durationMin = Math.floor(song.duration / 60);
   const durationSec = (song.duration % 60 > 10 ? song.duration % 60 : "0" + song.duration % 60 );
 
   return (
-    <tr>
+    
+    <tr id="songCard">
       <td>{song.name}</td>
       <td>{song.artist}</td>
       <td>{song.album}</td>
@@ -64,14 +65,13 @@ function SongCard({ song }) { // pass down playlists, work w/ Colm
           name="playlist"
           value={playlist}
         >
-          <option>Placeholder 1</option>
-          <option>Placeholder 2</option>
-          <option>Placeholder 3</option>
-          {/* {playlistOptions} work w/ Colm */}
+          <option>Enter Playlist</option>
+          {playlistOptions}
         </select>
         <button onClick={handleClick}>Add</button>
       </td>
     </tr>
+   
   )
 }
 

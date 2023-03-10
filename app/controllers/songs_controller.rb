@@ -3,7 +3,13 @@ class SongsController < ApplicationController
   before_action :set_song, only: :show
 
   def index
-    render json: Song.all.alphabetize, status: :ok
+    if params[:playlist_id]
+      playlist_id = Playlist.find(params[:playlist_id])
+      songs = playlist_id.songs.alphabetize
+    else
+      songs = Song.all.alphabetize
+    end
+    render json: songs, status: :ok
   end
 
   def show

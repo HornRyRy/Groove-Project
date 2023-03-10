@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :join_tables
-  resources :playlists
+  resources :playlists do
+    resources :songs
+  end
   resources :songs, only: [:index, :show, :create]
   resources :users, only: [:show, :create, :index, :destroy] do
     resources :playlists, only: [:show, :create, :index]

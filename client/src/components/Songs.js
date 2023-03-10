@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SongCard from './SongCard';
 
-function Songs() { // pass down playlists, work w/ Colm
+function Songs({ user, myPlaylists, setMyPlaylists }) {
 
   const initialForm = {
     name: "",
@@ -16,6 +16,20 @@ function Songs() { // pass down playlists, work w/ Colm
   const [songsList, setSongsList] = useState([]);
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState([]);
+
+  // GET
+  useEffect(() => {
+    fetch(`/users/${user.id}/playlists`)
+    // fetch(`/playlists`)
+    .then(res => {
+      if(res.ok) {
+        res.json()
+        .then(data => setMyPlaylists(data))
+      } else {
+        res.json().then(json => setErrors(json["errors"]))
+      }
+    })
+  }, [user.id])
 
   useEffect(() => {
     fetch(`/songs`)
@@ -33,7 +47,7 @@ function Songs() { // pass down playlists, work w/ Colm
 
   const renderSongsList = sortSongsList.map(song => {
     return (
-      <SongCard key={song.id} song={song} />
+      <SongCard key={song.id} song={song} myPlaylists={myPlaylists} />
     )
   })
 
