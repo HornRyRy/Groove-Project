@@ -5,6 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(https://cdn.wallpapersafari.com/74/90/ViStdw.jpg);
+  background-size: cover;
+  color: rgb(202, 202, 202)
+  
+  
 }
 
 code {

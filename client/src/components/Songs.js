@@ -153,7 +153,7 @@ function Songs({ user, myPlaylists, setMyPlaylists }) {
         <button type="submit">Add Song</button>
       </form>
 
-      <table>
+      <table className='songTable'>
         <tbody>
           <tr>
             <th>Song Name</th>

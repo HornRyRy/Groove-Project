@@ -34,7 +34,7 @@ function PlaylistCard({ playlist, onUpdate, onDelete }) {
 
   return (
     <div>
-      <h3>{playlist.name} - {playlist.description} - {playlist.playlist_img}
+      <h3>{playlist.name} - {playlist.description} - <img src={playlist.playlist_img} alt={playlist.name} className="playlistImg"/> -
         <button onClick={handleDelete}>Delete</button>
       </h3>
       <form onSubmit={handleUpdate}>

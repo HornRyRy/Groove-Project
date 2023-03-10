@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../App.css'
 
 function SongCard({ song, myPlaylists }) {
 
@@ -43,7 +44,7 @@ function SongCard({ song, myPlaylists }) {
 
   return (
     
-    <tr id="songCard">
+    <tr id="songCard" className= "songCard">
       <td>{song.name}</td>
       <td>{song.artist}</td>
       <td>{song.album}</td>

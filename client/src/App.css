@@ -5,22 +5,62 @@
 /* Credit where it's due - original styling taken from a W3 CSS tutorial */
 #navBar {
   overflow: hidden;
-  background-color: #81b29a;
+  background-color: #21838090;
 }
 
-#songCard{
+/* #songCard{
+  display: flex;
+  background-color: red;
   border-style: groove;
   border-color: #3d405b;
-  border-width: 1px;
+  border-width: 5px;
+  border-radius: 5px;
+} */
+
+.songCard{
+  
+  border-style: groove;
+  border-color: #3d405b;
+  border-width: 3px;
   border-radius: 5px;
 }
+
+
 
 table{
   border-color: #3d405b;
   border-width: 1px;
   border-radius: 5px;
+  margin: auto;
+  font-weight: bold;
+  color: rgb(55, 41, 30);
+  
 }
 
+tbody th {
+  background-color: #ffbc4280;
+
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1pt solid black;
+   
+}
+
+
+tbody tr:nth-child(odd) {
+  background-color: #73D2DE80;
+  background-image: linear-gradient(#73D2DE80, #21838080)
+}
+
+tbody tr:nth-child(even) {
+  background-color: #ad436f80;
+  background-image: linear-gradient(#eba7c380, #D8115980)
+}
 
 #navBar a {
   float: left;
@@ -71,4 +111,9 @@ table{
   to {
     transform: rotate(360deg);
   }
+}
+
+.playlistImg {
+  height: 50px;
+  vertical-align: middle;
 }
