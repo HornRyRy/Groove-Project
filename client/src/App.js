@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Routes, Route, useRoutes } from "react-router-dom"
+// import { Routes, Route, useRoutes } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import Signup from './components/Signup'
 import Login from "./components/Login";
 import Testing from './components/Testing'
@@ -12,10 +13,11 @@ import './App.css';
 
 function App(
 ) {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const [user, setUser] = useState(null)
-  const [page, setPage] = useState("/")
+  // const [page, setPage] = useState("/")
   const [errors, setErrors] = useState(false)
+  const [myPlaylists, setMyPlaylists] = useState([]);
 
   useEffect(() =>{
     fetch('/authorized')
@@ -27,8 +29,6 @@ function App(
     })
 
   },[])
-
-
 
   //<Route useRoutes=(["/signup", "/testing", "/song"]) element={<Signup user={user} setUser={setUser} />}  />
 
@@ -59,8 +59,8 @@ function App(
         <Route path="/testing"element={<Testing />} />
         <Route path="/signup" element={<Signup user={user} setUser={setUser} />}  />
         <Route path="/login" element={<Login user={user} setUser={setUser}/>}  />
-        <Route path="/playlists" element={<Playlists user={user} />}/>
-        <Route path="/songs" element={<Songs />}/>
+        <Route path="/playlists" element={<Playlists user={user} myPlaylists={myPlaylists} setMyPlaylists={setMyPlaylists} />}/>
+        <Route path="/songs" element={<Songs user={user} myPlaylists={myPlaylists} setMyPlaylists={setMyPlaylists} />}/>
       </Routes>
 
     </div>

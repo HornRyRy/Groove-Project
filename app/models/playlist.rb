@@ -4,4 +4,5 @@ class Playlist < ApplicationRecord
   has_many :songs, through: :join_tables
 
   validates :name, :description, presence: true
+  validates :name, uniqueness: true
 end

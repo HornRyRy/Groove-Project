@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PlaylistCard from './PlaylistCard';
 
-function Playlists({ user }) {
+function Playlists({ user, myPlaylists, setMyPlaylists }) {
 
   const initialForm = {
     name: "",
@@ -10,10 +10,10 @@ function Playlists({ user }) {
     user_id: user.id
   }
 
-  const [myPlaylists, setMyPlaylists] = useState([]); // Need to lift state to App
+  // const [myPlaylists, setMyPlaylists] = useState([]);
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState([]);
-  
+
   // GET
   useEffect(() => {
     fetch(`/users/${user.id}/playlists`)
@@ -27,8 +27,8 @@ function Playlists({ user }) {
       }
     })
   }, [user.id])
-
-    const handleAddChange = (e) => {
+  
+  const handleAddChange = (e) => {
     setForm({...form, [e.target.name]: e.target.value})
   }
   
