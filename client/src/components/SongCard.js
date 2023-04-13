@@ -6,30 +6,26 @@ function SongCard({ song, myPlaylists }) {
   const [playlist, setPlaylist] = useState(1)
 
   const handleChange = (e) => {
-    setPlaylist(e.target.value)
+    setPlaylist(value => value = e.target.value)
   }
 
   const handleClick = (e) => {
+    const playlistObj = myPlaylists.find(pl => pl.name === playlist)
+    const playlistId = playlistObj.id
+
     const config = {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
-        name: song.name,
-        artist: song.artist,
-        album: song.album,
-        picture: song.picture,
-        duration: song.duration,
-        preview: song.preview
+        playlist_id: playlistId,
+        song_id: song.id
       })
     }
 
-    const playlistId = myPlaylists.filter( pl => pl.name === playlist ) // Answer: playlistId[0]["id"]
-        
-    fetch(`/playlists/${playlistId[0]["id"]}/songs`, config)
+    fetch(`/join_tables`, config)
     .then(res => res.json())
     .then(data => {
       console.log(data) // Need to add frontend rendering
-      
     })
   }
 
