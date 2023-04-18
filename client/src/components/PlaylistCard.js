@@ -11,30 +11,52 @@ function PlaylistCard({ playlist, onUpdate, onDelete }) {
   }
 
   const [form, setForm] = useState(initialForm);
-
-  const myPlaylistSongs = playlist.songs.map(song => {
-    return (
-      <MySongCard key={song.id} song={song} />
-    )
-  })
-
+  const [mySongs, setMySongs] = useState(playlist.songs);
+  
   const handleUpdateChange = (e) => {
     setForm({...form, [e.target.name]: e.target.value})
   }
-
+  
   const handleUpdate = (e) => {
     e.preventDefault()
-
+    
     onUpdate(form)
   }
-
+  
+  const handleEdit = () => {
+    console.log('Update (not working) button clicked')
+  }
+  
   const handleDelete = () => {
     onDelete(playlist)
   }
+  
+  const onSongDelete = (songObj) => {
+    const joinTable = playlist.join_tables.find(jt => jt.song_id === songObj.id)
+
+    // Frontend Render DELETE Song
+    setMySongs(mySongs.filter(song => song.id !== songObj.id))
+
+    // Backend DELETE Song
+    const config = {
+      method: "DELETE"
+    }
+    
+    fetch(`/join_tables/${joinTable.id}`, config)
+  }
+
+  const sortMySongs = mySongs.sort((a, b) => a.artist.localeCompare(b.artist))
+  
+  const myPlaylistSongs = sortMySongs.map(song => {
+    return (
+      <MySongCard key={song.id} song={song} onSongDelete={onSongDelete}/>
+    )
+  })
 
   return (
     <div>
       <h3>{playlist.name} - {playlist.description} - <img src={playlist.playlist_img} alt={playlist.name} className="playlistImg"/> -
+        <button onClick={handleEdit}>Update (not working)</button>
         <button onClick={handleDelete}>Delete</button>
       </h3>
       <form onSubmit={handleUpdate}>
@@ -70,6 +92,7 @@ function PlaylistCard({ playlist, onUpdate, onDelete }) {
             <th>Album Image</th>
             <th>Duration</th>
             <th>Preview</th>
+            <th>Delete Song</th>
           </tr>
           {myPlaylistSongs}
         </tbody>

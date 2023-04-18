@@ -20,7 +20,6 @@ function Songs({ user, myPlaylists, setMyPlaylists }) {
   // GET
   useEffect(() => {
     fetch(`/users/${user.id}/playlists`)
-    // fetch(`/playlists`)
     .then(res => {
       if(res.ok) {
         res.json()
@@ -29,9 +28,7 @@ function Songs({ user, myPlaylists, setMyPlaylists }) {
         res.json().then(json => setErrors(json["errors"]))
       }
     })
-  }, [user.id])
 
-  useEffect(() => {
     fetch(`/songs`)
     .then(res => {
       if(res.ok) {
@@ -41,7 +38,7 @@ function Songs({ user, myPlaylists, setMyPlaylists }) {
         res.json().then(json => setErrors(json["errors"]))
       }
     })
-  }, [])
+  }, [user.id])
 
   const sortSongsList = songsList.sort((a, b) => a.artist.localeCompare(b.artist))
 

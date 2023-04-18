@@ -1,18 +1,17 @@
-// import { useState, useEffect } from 'react'
 import { useState } from 'react'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
+function Signup({ setUser }) {
 
-function Signup({ user, setUser }) {
+    const navigate = useNavigate();
 
-const [name, setName] = useState('')
-const [username, setUsername] = useState('')
-const [password, setPassword] = useState('')
-
+    const [name, setName] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
     function handleSubmit(e){
         e.preventDefault()
-        const user ={
+        const user = {
             name, 
             username,
             password
@@ -23,16 +22,15 @@ const [password, setPassword] = useState('')
             body:JSON.stringify(user)
         })
         .then(resp => {
-            if(resp.status === 201){
-                resp.json().then(user => setUser(user))
+            if (resp.status === 201) {
+                resp.json().then(user => setUser(user));
+                navigate(`/`);
                 console.log("Users post status 201")
-            }else{
+            } else {
                 resp.json().then(console.log("no 201 status"))
             }
         })
     }
-
-
 
     return (
         <div>

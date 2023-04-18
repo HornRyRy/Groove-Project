@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
-function NavBar({errors, setErrors, user, setUser}) {
+function NavBar({errors, user, setUser}) {
 
     let navigate = useNavigate()
 
@@ -18,20 +18,17 @@ function NavBar({errors, setErrors, user, setUser}) {
         })
     }
 
-
     // if no user -> Link to '/<Song>
 
     if(errors) return <h1>errors</h1>
     if(!user) return (
         <nav>
-        <ul id="navBar">
-
-            <Link to="/signup">Signup</Link>
-            <Link to="/login">Login</Link>
-
-        </ul>
-        
-    </nav>
+            <ul id="navBar">
+                <Link to="/">Home</Link>
+                <Link to="/signup">Signup</Link>
+                <Link to="/login">Login</Link>
+            </ul>
+        </nav>
     ) 
 
     return (
@@ -45,7 +42,6 @@ function NavBar({errors, setErrors, user, setUser}) {
                 <Link to="/songs">Songs List</Link>
                 <button onClick={handleLogout}>Logout</button>
             </ul>
-            
         </nav>
     );
 }

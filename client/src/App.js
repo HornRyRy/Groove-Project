@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom"
 import Signup from './components/Signup'
 import Login from "./components/Login";
-import Testing from './components/Testing'
+// import Testing from './components/Testing'
 import Home from './components/Home'
 import NavBar from "./components/NavBar";
 import Playlists from "./components/Playlists";
@@ -24,11 +24,9 @@ function App(
     .then(resp =>{
       if(resp.ok){
         resp.json().then(user => setUser(user))
-        setUser(null)
       }
     })
-
-  },[])
+  }, [])
 
   //<Route useRoutes=(["/signup", "/testing", "/song"]) element={<Signup user={user} setUser={setUser} />}  />
 
@@ -36,35 +34,30 @@ function App(
   if(!user) return (
     <div className="App">
 
-      <NavBar errors={errors} setErrors={setErrors} user={user} setUser={setUser} />
+      <NavBar errors={errors} user={user} setUser={setUser} />
       <Routes>
         <Route path='/' element={<Home /> }/>
-     
-        <Route path="/signup" element={<Signup user={user} setUser={setUser} />}  />
-        <Route path="/login" element={<Login user={user} setUser={setUser}/>}  />
-       
+        <Route path="/signup" element={<Signup setUser={setUser} />}  />
+        <Route path="/login" element={<Login setUser={setUser}/>}  />
       </Routes>
 
     </div>
-  ) 
-
+  )
 
   return (
-
     <div className="App">
 
       <NavBar errors={errors} setErrors={setErrors} user={user} setUser={setUser} />
       <Routes>
         <Route path='/' element={<Home /> }/>
-        <Route path="/testing"element={<Testing />} />
+        {/* <Route path="/testing"element={<Testing />} />
         <Route path="/signup" element={<Signup user={user} setUser={setUser} />}  />
-        <Route path="/login" element={<Login user={user} setUser={setUser}/>}  />
+        <Route path="/login" element={<Login user={user} setUser={setUser}/>}  /> */}
         <Route path="/playlists" element={<Playlists user={user} myPlaylists={myPlaylists} setMyPlaylists={setMyPlaylists} />}/>
         <Route path="/songs" element={<Songs user={user} myPlaylists={myPlaylists} setMyPlaylists={setMyPlaylists} />}/>
       </Routes>
 
     </div>
-
   );
 }
 

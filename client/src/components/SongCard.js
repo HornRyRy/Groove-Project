@@ -1,35 +1,33 @@
 import React, { useState } from 'react';
 import '../App.css'
 
-function SongCard({ song, myPlaylists }) {
+function SongCard({ song, myPlaylists, setMyPlaylists }) {
 
-  const [playlist, setPlaylist] = useState(1)
+  const [playlist, setPlaylist] = useState("")
 
   const handleChange = (e) => {
-    setPlaylist(e.target.value)
+    setPlaylist(value => value = e.target.value)
   }
 
-  const handleClick = (e) => {
+  const handleClick = () => {
+    const playlistObj = myPlaylists.find(pl => pl.name === playlist)
+    const playlistId = playlistObj.id
+
+    // Frontend Render and Backend CREATE Song (pessimistic)
     const config = {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
-        name: song.name,
-        artist: song.artist,
-        album: song.album,
-        picture: song.picture,
-        duration: song.duration,
-        preview: song.preview
+        playlist_id: playlistId,
+        song_id: song.id
       })
     }
 
-    const playlistId = myPlaylists.filter( pl => pl.name === playlist ) // Answer: playlistId[0]["id"]
-        
-    fetch(`/playlists/${playlistId[0]["id"]}/songs`, config)
+    fetch(`/join_tables`, config)
     .then(res => res.json())
     .then(data => {
-      console.log(data) // Need to add frontend rendering
-      
+      myPlaylists[playlistId-1].songs.push(data.song)
+      setMyPlaylists([...myPlaylists])
     })
   }
 
@@ -43,7 +41,6 @@ function SongCard({ song, myPlaylists }) {
   const durationSec = (song.duration % 60 > 10 ? song.duration % 60 : "0" + song.duration % 60 );
 
   return (
-    
     <tr id="songCard" className= "songCard">
       <td>{song.name}</td>
       <td>{song.artist}</td>
@@ -68,7 +65,6 @@ function SongCard({ song, myPlaylists }) {
         <button onClick={handleClick}>Add</button>
       </td>
     </tr>
-   
   )
 }
 

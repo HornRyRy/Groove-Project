@@ -32,47 +32,42 @@ end
 puts "🌱 Seeding data..."
 
 puts "seeding users"
-user1 = User.create(name: "Luke", username: "luke@gmail.com", password: "password1")
-user2 = User.create(name: "Yoda", username: "yoda@gmail.com", password: "password2")
+user1 = User.create(name: "Luke", username: "luke@gmail.com", password: "1234")
+user2 = User.create(name: "Yoda", username: "yoda@gmail.com", password: "1234")
 
-puts "Creating searches..."
-fetch_songs("acdc")
+puts "seeding songs"
+# fetch_songs("acdc")
 # fetch_songs("badbunny")
 # fetch_songs("cure")
 # fetch_songs("davidbowie")
-# fetch_songs("eminem")
+fetch_songs("eminem")
 # fetch_songs("franksinatra")
 # fetch_songs("greenday")
 # fetch_songs("harrystyles")
 # fetch_songs("ironmaiden")
 # fetch_songs("justinbieber")
-# fetch_songs("kendricklamar")
+fetch_songs("kendricklamar")
 # fetch_songs("lanadelrey")
 # fetch_songs("metallica")
-fetch_songs("nickiminaj")
+# fetch_songs("nickiminaj")
 # fetch_songs("onerepublic")
 # fetch_songs("pinkfloyd")
 # fetch_songs("queen")
-# fetch_songs("rihanna")
+fetch_songs("rihanna")
 # fetch_songs("slipknot")
-# fetch_songs("thebeatles")
+fetch_songs("thebeatles")
 # fetch_songs("u2")
 # fetch_songs("vanhalen")
 # fetch_songs("weeknd")
 # fetch_songs("xxxtentacion")
 # fetch_songs("youngthug")
-# fetch_songs("zedd")
-
-# puts "seeding songs"
-# song1 = Song.create(name: "Rockin' the Machine", artist: "rockin", album: "machine rockin", picture: "picture1.png", duration: 210, preview: "preview1")
-# song2 = Song.create(name: "Antoher song", artist: "that guy", album: "an album", picture: "picture2.png", duration: 191, preview: "preview2")
-# song3 = Song.create(name: "woohoo", artist: "another guy", album: "a differnent album", picture: "picture3.png", duration: 228, preview: "preview3")
+fetch_songs("zedd")
 
 puts "seeding playlists"
-playlist1 = user1.playlists.create(name: "Workout", description: "Playlist for working out", playlist_img: "workout.jpg", user_id: user1.id)
-playlist2 = user1.playlists.create(name: "Chill", description: "Playlist for chilling", playlist_img: "chill.jpg", user_id: user2.id)
-playlist3 = user2.playlists.create(name: "Party", description: "Playlist for partying", playlist_img: "party.jpg", user_id: user1.id)
-playlist4 = user2.playlists.create(name: "Relax", description: "Playlist for relaxing", playlist_img: "relax.jpg", user_id: user2.id)
+playlist1 = user1.playlists.create(name: "Workout", description: "Playlist for working out", playlist_img: "https://assets-prd.ignimgs.com/2021/10/14/demonslayer-art-1634244394273.png", user_id: user1.id)
+playlist2 = user1.playlists.create(name: "Chill", description: "Playlist for chilling", playlist_img: "https://assets-prd.ignimgs.com/2021/10/14/demonslayer-art-1634244394273.png", user_id: user2.id)
+playlist3 = user2.playlists.create(name: "Party", description: "Playlist for partying", playlist_img: "https://assets-prd.ignimgs.com/2021/10/14/demonslayer-art-1634244394273.png", user_id: user1.id)
+playlist4 = user2.playlists.create(name: "Relax", description: "Playlist for relaxing", playlist_img: "https://assets-prd.ignimgs.com/2021/10/14/demonslayer-art-1634244394273.png", user_id: user2.id)
 
 puts "seeding join_tables"
 JoinTable.create(playlist_id: playlist1.id, song_id: Song.ids.sample)
