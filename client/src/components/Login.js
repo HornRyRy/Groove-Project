@@ -1,15 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login({user, setUser}) {
+function Login({ setUser }) {
+  
+  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
-    // name:'',
     username: "",
     password: "",
   });
 
   const [errors, setErrors] = useState([]);
-  const navigate = useNavigate();
   const { username, password } = formData;
 
   function handleSubmit(e) {
@@ -44,6 +45,7 @@ function Login({user, setUser}) {
   return (
     <div>
       <h1>This is Login</h1>
+      {(errors ? errors.map(error => <h3 style={{color:'red'}}>{error.toUpperCase()}</h3>) : "")}
       <form onSubmit={handleSubmit}>
         <h2>Login Here</h2>
 

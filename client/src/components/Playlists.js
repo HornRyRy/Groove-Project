@@ -10,14 +10,12 @@ function Playlists({ user, myPlaylists, setMyPlaylists }) {
     user_id: user.id
   }
 
-  // const [myPlaylists, setMyPlaylists] = useState([]);
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState([]);
 
   // GET
   useEffect(() => {
     fetch(`/users/${user.id}/playlists`)
-    // fetch(`/playlists`)
     .then(res => {
       if(res.ok) {
         res.json()
@@ -26,7 +24,7 @@ function Playlists({ user, myPlaylists, setMyPlaylists }) {
         res.json().then(json => setErrors(json["errors"]))
       }
     })
-  }, [user.id])
+  }, [setMyPlaylists])
   
   const handleAddChange = (e) => {
     setForm({...form, [e.target.name]: e.target.value})
@@ -42,7 +40,6 @@ function Playlists({ user, myPlaylists, setMyPlaylists }) {
       body: JSON.stringify(form)
     }
     
-    // fetch(`http://localhost:3000/users/${user.id}/playlists`, config)
     fetch(`/users/${user.id}/playlists`, config)
     .then(res => {
       if(res.ok) {
@@ -83,20 +80,20 @@ function Playlists({ user, myPlaylists, setMyPlaylists }) {
     
     // Backend DELETE
     const config = {
-        method: "DELETE"
-      }
-      
-      fetch(`/playlists/${playlistObj.id}`, config)
+      method: "DELETE"
     }
+      
+    fetch(`/playlists/${playlistObj.id}`, config)
+  }
 
-    const renderMyPlaylists = myPlaylists.map(playlist => {
-      return (
-        <PlaylistCard key={playlist.id} playlist={playlist} onUpdate={onUpdate} onDelete={onDelete} />
-      )
-    })
-    
+  const renderMyPlaylists = myPlaylists.map(playlist => {
     return (
-      <div>
+      <PlaylistCard key={playlist.id} playlist={playlist} onUpdate={onUpdate} onDelete={onDelete} />
+    )
+  })
+    
+  return (
+    <div>
       <h2>My Playlists</h2>
 
       {(errors ? errors.map(error => <h3 style={{color:'red'}}>{error.toUpperCase()}</h3>) : "")}
