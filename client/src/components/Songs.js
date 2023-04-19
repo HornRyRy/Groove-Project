@@ -39,19 +39,13 @@ function Songs({ user, myPlaylists, setMyPlaylists }) {
       }
     })
   }, [user.id])
-
-  const sortSongsList = songsList.sort((a, b) => a.artist.localeCompare(b.artist))
-
-  const renderSongsList = sortSongsList.map(song => {
-    return (
-      <SongCard key={song.id} song={song} myPlaylists={myPlaylists} setMyPlaylists={setMyPlaylists} />
-    )
-  })
-
+  
+  // Form controlled input
   const handleAddChange = (e) => {
     setForm({...form, [e.target.name]: e.target.value})
   }
   
+  // CREATE Song
   const handleAddSubmit = (e) => {
     e.preventDefault();
     
@@ -85,6 +79,14 @@ function Songs({ user, myPlaylists, setMyPlaylists }) {
   // const handleSearchChange = (e) => { // STRETCH GOAL
   //   setSearch(e.target.value)
   // }
+
+  const sortSongsList = songsList.sort((a, b) => a.artist.localeCompare(b.artist))
+
+  const renderSongsList = sortSongsList.map(song => {
+    return (
+      <SongCard key={song.id} song={song} myPlaylists={myPlaylists} setMyPlaylists={setMyPlaylists} />
+    )
+  })
   
   return (
     <div>
@@ -92,7 +94,7 @@ function Songs({ user, myPlaylists, setMyPlaylists }) {
 
       {/* <h3>Search More Songs:</h3> ** STRETCH GOAL **
       <form onSubmit={handleSearchSubmit}>
-        <input
+      <input
           onChange={handleSearchChange}
           type="text"
           name="search"

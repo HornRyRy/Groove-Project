@@ -26,6 +26,7 @@ function SongCard({ song, myPlaylists, setMyPlaylists }) {
     fetch(`/join_tables`, config)
     .then(res => res.json())
     .then(data => {
+      // Frontend render is not working properly; Ex: when adding a new playlist then adding a new song
       myPlaylists[playlistId-1].songs.push(data.song)
       setMyPlaylists([...myPlaylists])
     })

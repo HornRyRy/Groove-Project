@@ -12,6 +12,7 @@ function PlaylistCard({ playlist, onUpdate, onDelete }) {
 
   const [form, setForm] = useState(initialForm);
   const [mySongs, setMySongs] = useState(playlist.songs);
+  const [updatePlaylistButton, setUpdatePlaylistButton] = useState(false);
   
   const handleUpdateChange = (e) => {
     setForm({...form, [e.target.name]: e.target.value})
@@ -19,12 +20,13 @@ function PlaylistCard({ playlist, onUpdate, onDelete }) {
   
   const handleUpdate = (e) => {
     e.preventDefault()
-    
+    setUpdatePlaylistButton(!updatePlaylistButton)
     onUpdate(form)
   }
   
-  const handleEdit = () => {
-    console.log('Update (not working) button clicked')
+  const onUpdateButtonClick = () => {
+    setUpdatePlaylistButton(!updatePlaylistButton)
+    console.log('Update button clicked')
   }
   
   const handleDelete = () => {
@@ -45,20 +47,10 @@ function PlaylistCard({ playlist, onUpdate, onDelete }) {
     fetch(`/join_tables/${joinTable.id}`, config)
   }
 
-  const sortMySongs = mySongs.sort((a, b) => a.artist.localeCompare(b.artist))
-  
-  const myPlaylistSongs = sortMySongs.map(song => {
-    return (
-      <MySongCard key={song.id} song={song} onSongDelete={onSongDelete}/>
-    )
-  })
+  let updateState;
 
-  return (
-    <div>
-      <h3>{playlist.name} - {playlist.description} - <img src={playlist.playlist_img} alt={playlist.name} className="playlistImg"/> -
-        <button onClick={handleEdit}>Update (not working)</button>
-        <button onClick={handleDelete}>Delete</button>
-      </h3>
+  if(updatePlaylistButton) {
+    updateState = (
       <form onSubmit={handleUpdate}>
         <input 
           onChange={handleUpdateChange}
@@ -81,8 +73,58 @@ function PlaylistCard({ playlist, onUpdate, onDelete }) {
           placeholder="Enter Playlist Image"
           value={form.playlist_img}
         />
-        <button>Update</button>
+        <button onClick={onUpdateButtonClick}>Cancel</button>
+        <button>Confirm Update</button>
       </form>
+    )
+  } else {
+    updateState = (
+      <h3>{playlist.name} - {playlist.description} - <img src={playlist.playlist_img} alt={playlist.name} className="playlistImg"/> -
+        <button onClick={onUpdateButtonClick}>Update Playlist</button>
+        <button onClick={handleDelete}>Delete Playlist</button>
+      </h3>
+    )
+  }
+
+  const sortMySongs = mySongs.sort((a, b) => a.artist.localeCompare(b.artist))
+  
+  const myPlaylistSongs = sortMySongs.map(song => {
+    return (
+      <MySongCard key={song.id} song={song} onSongDelete={onSongDelete}/>
+    )
+  })
+
+  return (
+    <div>
+      {/* <h3>{playlist.name} - {playlist.description} - <img src={playlist.playlist_img} alt={playlist.name} className="playlistImg"/> -
+        <button onClick={onUpdateButtonClick}>Update Playlist Details</button>
+        <button onClick={handleDelete}>Delete</button>
+      </h3> */}
+      {updateState}
+      {/* <form onSubmit={handleUpdate}>
+        <input 
+          onChange={handleUpdateChange}
+          type="text"
+          name="name"
+          placeholder="Enter Playlist Name"
+          value={form.name}
+        />
+        <input
+          onChange={handleUpdateChange}
+          type="text"
+          name="description"
+          placeholder="Enter Playlist Description"
+          value={form.description}
+        />
+        <input
+          onChange={handleUpdateChange}
+          type="text"
+          name="playlist_img"
+          placeholder="Enter Playlist Image"
+          value={form.playlist_img}
+        />
+        <button>Update</button>
+      </form> */}
       <table>
         <tbody>
           <tr>
